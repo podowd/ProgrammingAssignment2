@@ -1,5 +1,5 @@
 ## Functions for calculating and caching the inverse of a Matrix - once the inverse is cached it 
-## can be continuously accessed without having to be recalculated (unless the original matrix chnages!)
+## can be continuously accessed without having to be recalculated (unless the original matrix changes!)
 
 ## This function creates a custom matrix object that can also store the matrix's corresponding inverse matrix 
 makeCacheMatrix <- function(x = matrix()) {
@@ -17,7 +17,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ## This function returns the inverse of a matrix - it first checks if the inverse has already been computed and 
 ## if yes, just returns it. 
 ## if not, it first calculates the inverse matrix, 
-##         - then caches it by calling the setInverse function of the special matrix object (which is returned by the makeCacheMatrix function above)
+##         - then caches it by calling the setInverse function of the custom matrix object 
+##           (see the makeCacheMatrix function above for details of this custom matrix object)
 ##         - and finally returns the inverse matrix. 
 cacheSolve <- function(x, ...) {
   inverse <- x$getInverse()
@@ -26,7 +27,7 @@ cacheSolve <- function(x, ...) {
     return(inverse)
   }
   data <- x$get()
-  inverse <- solve(data,...) #Calculates the inverse matriz 
+  inverse <- solve(data,...) # Calculates the inverse matriz 
   x$setInverse(inverse)
   return(inverse)
 }
